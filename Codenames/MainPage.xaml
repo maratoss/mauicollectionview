@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:codenames="clr-namespace:Codenames"
+             x:Class="Codenames.MainPage"
+             x:DataType="codenames:MainPage">
+
+    <CollectionView Margin="0,25,0,25"
+                    CanReorderItems="True"
+                    ItemsSource="{Binding Path=PicUploaderModels, Mode=OneWay}"
+                    x:Name="CV">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical"
+                             HorizontalItemSpacing="1"
+                             VerticalItemSpacing="10"
+                             Span="3" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="codenames:UploadPhotoViewModel">
+                <Grid BackgroundColor="LightSlateGray">
+                    <Grid>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTakePhotoClicked" />
+                        </Grid.GestureRecognizers>
+                        
+                        <Image Source="{Binding PreviewPic, Mode=OneWay}"
+                               HorizontalOptions="Fill"
+                               HeightRequest="110"
+                               WidthRequest="75"
+                               VerticalOptions="Center"/>
+                    </Grid>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+</ContentPage>
